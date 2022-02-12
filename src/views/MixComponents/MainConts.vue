@@ -1,24 +1,47 @@
 <template>
-  <div class="home">
-    <SortWord/>
-  </div>
+        <ul>
+                 <li v-for="item in shortlists" :key="item._id" @click="goto(item._id)">
+                   <img :src="item.img" alt="">
+                   <div class="jieshaos">
+                       <p style="font-size:14px;color:#aaaaaa">&nbsp;{{item.title}}</p>
+                       <p>
+                           <span>￥{{item.price}}</span>
+                           <span>&nbsp;<van-icon name="star-o" />&nbsp;</span>
+                       </p>
+                   </div>
+                </li>
+            </ul>
 </template>
 
 <script>
-// @ is an alias to /src
-import SortWord from '@/components/SortWord.vue'
-
 export default {
-  name: 'Sorts',
-  components: {
-    SortWord
-  }
+    name:"MainConts",
+     inject:['shortlists'],
+    data(){
+        return{
+            
+        }
+    },
+    created(){
+        console.log("当前数据",this.shortlists);
+    },
+    methods:{
+        goto(id){
+            this.$router.push({name:"Details",query:{id:id}})
+           let top = document.documentElement.scrollTop;
+           let timeId = setInterval(()=>{
+              document.documentElement.scrollTop = top -= 50;  
+                  if(top<=0){
+                  clearInterval(timeId)
+             }
+          },10)
+          this.getData();
+        }
+    }
 }
 </script>
+
 <style lang="scss">
-html,body{
-  height: 100%;
-}
 .homepage{
     display: flex;
     flex-direction: column;
@@ -32,7 +55,7 @@ html,body{
         flex-wrap: wrap;
         li{
             width: 47%;
-            height: 250px;
+            // height: 250px;
             img{
                 width: 100%;
                 height: 80%;
