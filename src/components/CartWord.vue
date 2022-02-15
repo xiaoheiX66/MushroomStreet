@@ -8,10 +8,11 @@
             <van-step>交易完成</van-step>
             </van-steps>
         </section>
-        <section>
+        <section v-if="cartlists.length>0">
             <ul>
-                <li v-for="item in cartlists" :key="item._id" @change="selectIds">
+                <li v-for="(item,index) in cartlists" :key="item._id">
                     <van-swipe-cell style="width:375px">
+                        
                      <van-card
                         num="2"
                         :price="59.00"
@@ -31,23 +32,27 @@
                             <img :src="item.img" alt="暂无" style="height:100%" />
                         </template>
                         <template #num>
-                            <van-stepper v-model="item.qty" theme="round" button-size="22" disable-input style="margin-top:10px" />
+                            <van-stepper v-model="item.qty" :name="item._id" theme="round" button-size="22" disable-input style="margin-top:10px"
+                             @change="changeqty" @plus="addcss2(item._id,index)" @minus="reducss2(item._id,index)" @overlimit="overmits" />
                         </template> 
                      </van-card>
                       <template #left style="display:flex">
-                         <van-checkbox v-model="checked" style="width:32px;justify-content:center;height:100%"></van-checkbox>
+                         <van-checkbox @click="selectItem(item._id)" :value="selectIds.includes(item._id)" style="width:32px;justify-content:center;height:100%"></van-checkbox>
                     </template>
                      <template #right>
-                        <van-button square text="删除" type="danger" class="delete-button" />
+                        <van-button square text="删除" type="danger" class="delete-button"  @click="delShpos(item._id)" />
                      </template>
                        </van-swipe-cell>
                 </li>
                 <li style="height:50px"></li>
             </ul>
         </section>
+         <van-empty description="购物车里空空如也~~" v-else>
+            <van-button round type="danger" size="small" plain to="/sorts">去购买</van-button>
+        </van-empty>
         <section>
-            <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-            <van-checkbox v-model="checked">全选</van-checkbox></van-submit-bar>
+            <van-submit-bar :price="totalPrices" button-text="提交订单" @submit="onSubmit">
+            <van-checkbox v-model="checkAll">全选</van-checkbox></van-submit-bar>
         </section>
     </div>
 </template>
@@ -59,28 +64,101 @@ export default {
         return{
             active:1,
             checked:true,
-            qty:1,
-           
+            qty:1, 
+            selectIds:[],
+            qtys:1
         }
     },
     computed:{
        totalPrices(){
-           return this.value
+           return  this.cartlists.filter(item=>this.selectIds.includes(item._id)).reduce((prev,item)=>prev+item.price*item.qty,0)*100
        },
        cartlists(){
             return this.$store.state.cartlists
-        }
+        },
+        isLogins(){
+            return this.$store.commit('isLogins')
+        },
+        checkAll:{
+            get(){
+                return this.cartlists.every(item=>this.selectIds.includes(item._id))
+            },
+            set(newVal){
+                console.log("newVal",newVal);
+                this.selectIds = newVal ? this.cartlists.map(item=>item._id) : []
+            }
+        },
     },
     methods:{
         onSubmit(){
-            console.log("商品提交");
+            this.$Toast.fail('系统维护中...')
         },
-        selectIds(){
-            console.log("当前状态改变了");
-        },
+         delShpos(id){
+        //    console.log("删除点击的id值",id);
+           this.$Dialog.confirm({title: '删除',message: '确认删除当前商品?',}).then(() => {
+            //    console.log("确认删除");
+              this.$request.delete("/carts/deltes/"+id).then((resolve)=>{
+                  const {data} = resolve;
+                  if(data.code===200){
+                      this.$Toast.success('删除成功');
+                      this.$store.commit("removeFromCart",id)
+                      return
+                  }else if(data.code===400){
+                      this.$Toast.falied('删除失败')
+                  }
+              }).catch((err)=>{
+                  console.log("err",err);
+              })
         
+           })
+            .catch(() => {
+                console.log("取消删除");
+            });
+        }, 
+        changeqty(value,detail){
+            console.log("details",detail);
+            this.$Toast.loading({ forbidClick: true });
+            clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+        this.$Toast.clear();
+        // 注意此时修改 value 后会再次触发 change 事件
+        // this.value = value;
+        this.$store.commit('modifyqty',{id:detail.name,qty:value})
+      }, 500)
+        },
+        addcss2(id){
+            this.$request.post("/carts/addcs",{id:id}).then((resolve)=>{
+                console.log("resolve",resolve);
+                const {data} = resolve;
+                // this.qtys = data.infos[0].qty
+                console.log("data",data);
+            
+            }).catch((err)=>{console.log("err",err);})
+        },
+        reducss2(id){
+           this.$request.post("/carts/redecs",{id:id}).then((resolve)=>{
+                console.log("resolve",resolve);
+                const {data} = resolve;
+                // this.qtys = data.infos[0].qty
+                console.log("data",data);
+            
+            }).catch((err)=>{console.log("err",err);}) 
+        },
+        overmits(){
+            this.$Toast.fail('当前商品数量为1件')
+        },
+        selectItem(id){
+      let idx = this.selectIds.indexOf(id)
+      if(idx>=0){
+        this.selectIds.splice(idx,1)
+      }else{
+        this.selectIds.push(id)
+      }
+      console.log("selectids",this.selectIds);
     },
-    created(){  
+    },
+    watch:{
+
     }
 }
 </script>

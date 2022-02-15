@@ -5,9 +5,10 @@
     round
     width="5rem"
     height="5rem"
-    src="https://i03piccdn.sogoucdn.com/bd8daea9f5f7d857"
+    :src="fileList[0]"
+      @click="uploadTx"
     />
-    <span v-if="isLogin"><a><i class="userss">{{userinfos.username}}</i>&nbsp;&nbsp;&nbsp;,<i @click="loginOut">退出</i></a></span>
+    <span v-if="isLogin"><a><i class="userss">{{userinfos.username}}</i>&nbsp;&nbsp;&nbsp;,<i @click="loginOut" class="loginouts">退出</i></a></span>
     <span v-else><a @click="$router.push('/logins')">立即登录</a></span>
       </section>
       <section>
@@ -64,6 +65,21 @@
               </li>
           </ul>
       </section>
+      <section></section>
+      <van-popup
+        v-model="show"
+        closeable
+        close-icon="close"
+        position="bottom"
+        :style="{ height: '30%' }"
+        >
+        <van-uploader v-model="fileList" multiple :max-count="5" :max-size="500 * 1024"
+         :before-read="beforeRead" @oversize="onOversize" :after-read="afterRead"
+         :file="filepath"
+         >
+        
+         </van-uploader>
+      </van-popup>
     </div>
 </template>
 
@@ -79,12 +95,15 @@ export default {
                 {id:3,icon:"vip-card-o",text:"会员卡"},
                 {id:4,icon:"shopping-cart-o",text:"我的购物车"},
                 {id:5,icon:"shield-o",text:"下载购物APP"},
-            ]
+            ],
+            show:false,
+            fileList: ["https://i03piccdn.sogoucdn.com/bd8daea9f5f7d857"],
         }
     },
     created(){
         // this.$store.commit('isLogins')
         this.getData();
+        console.log("初始状态fielist",this.fileList[0]);
     },
     computed:{
         extradata(){
@@ -96,6 +115,9 @@ export default {
        isLogin(){
            return this.$store.getters.isLogin
        },
+       filepath(){
+           return "http://localhost:8088/public/img/"
+       }
     },
     methods:{
          goto(id){
@@ -110,12 +132,36 @@ export default {
           this.getData();
       },
       loginOut(){
-         this.$store.commit('loginOut')
+               this.$Dialog.confirm({title: '退出登录',message: `亲爱的&nbsp;<b style="font-size:17px">${this.userinfos.username}</b>&nbsp;确认退出吗?`,}).then(() => {
+               this.$store.commit('loginOut')
+          })
        },
        getData(){
            this.bottomLists = JSON.parse(localStorage.getItem("extradata"))
-       }
-        
+       },
+    //    上传头像
+       uploadTx(){
+           this.show=true;
+           this.onOversize();
+       },
+    beforeRead(file){
+        if (file.type !== 'image/jpeg') {
+        this.$Toast('请上传 一张 jpg/jpeg 格式图片');
+        return false;
+      }
+      return true;
+    },
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log("file",file);
+      console.log("已上传的列表filelist1",this.fileList);
+      let paths ="C:/Users/许男/Desktop/"
+      this.fileList.push(paths+this.fileList[0].file) 
+      console.log("已上传的列表filelist2",this.fileList);
+    },
+     onOversize() {
+        this.$Toast('文件大小不能超过 500kb');
+    },
     }
 }
 </script>
@@ -227,8 +273,8 @@ export default {
          background-color: #eee;
      }
  }
- section:nth-last-child(1){
-     margin-top: 10px;
+ section:nth-child(4){
+      margin-top: 10px;
      background-color: white;
      ul{
          width: 100%;
@@ -240,5 +286,8 @@ export default {
         }
      }
  }
+ }
+ section:nth-last-child(1){
+    height: 50px;
 }
 </style>

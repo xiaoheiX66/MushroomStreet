@@ -5,41 +5,29 @@ import store from './store'
 import request,{host} from './utils/request.js'
 
 Vue.config.productionTip = false
-import Vant,{Toast} from 'vant';
+import Vant,{Toast,Dialog} from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
-Vue.use(Toast);
-// import { Tabbar, TabbarItem ,Icon ,NavBar,Toast,Swipe, SwipeItem,
-//   Lazyload ,Image as VanImage,Card,Tab, Tabs,Sidebar, SidebarItem ,Col, Row
-//   ,RadioGroup, Radio,Checkbox, CheckboxGroup,ActionBar, ActionBarIcon, ActionBarButton} from 'vant';
-// Vue.use(Tabbar);
-// Vue.use(TabbarItem);
-// Vue.use(Icon);
-// Vue.use(NavBar);
-// Vue.use(Toast);
-
-// Vue.use(Swipe);
-// Vue.use(SwipeItem);
-// Vue.use(Lazyload);
-// Vue.use(VanImage);
-// Vue.use(Card);
-// Vue.use(Tab);
-// Vue.use(Tabs);
-// Vue.use(Sidebar);
-// Vue.use(SidebarItem);
-// Vue.use(Col);
-// Vue.use(Row);
-// Vue.use(Radio);
-// Vue.use(RadioGroup);
-// Vue.use(Checkbox);
-// Vue.use(CheckboxGroup);
-// Vue.use(ActionBar);
-// Vue.use(ActionBarIcon);
-// Vue.use(ActionBarButton);
 
 Vue.prototype.$request = request;
 Vue.prototype.$host =host;
+Vue.prototype.$Toast = Toast;
+Vue.prototype.$Dialog = Dialog;
 
+// 判断是否登录
+router.beforeEach((to,from,next)=>{
+  let flag = store.getters.isLogin
+  if(to.meta.requireAuth == true){
+    if(!flag){
+      Toast.fail('您还未登录!!');
+      next({path:"/logins"})
+    }else{
+      return next()
+    }
+  }else{
+    return next()
+  }
+})
 new Vue({
   router,
   store,

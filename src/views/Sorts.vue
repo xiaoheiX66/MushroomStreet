@@ -12,7 +12,7 @@ export default {
   name: 'Sorts',
   components: {
     SortWord
-  }
+  },
 }
 </script>
 <style lang="scss">

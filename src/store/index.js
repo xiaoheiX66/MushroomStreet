@@ -48,16 +48,25 @@ export default new Vuex.Store({
     },
     // 检验传过来的数据并进行更正修改数量
     modifyqty(state,payload){
+      console.log("前端传过来的校验",payload);
       state.cartlists.forEach((item)=>{
         if(item._id===payload.id){
           item.qty=payload.qty;
         }
         localStorage.setItem("cartData",JSON.stringify(state.cartlists))
       })
+    },
+    // 处理当前要删除的商品
+    removeFromCart(state,payload){
+      console.log("前面删除传过来的id值",payload);
+      state.cartlists = state.cartlists.filter(item=>item._id !=payload)
+      localStorage.setItem("cartData",JSON.stringify(state.cartlists))
     }
   },
   actions: {
-    
+    async addToCarts(){
+      
+    }
   },
   modules: {
   }

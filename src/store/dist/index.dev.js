@@ -64,6 +64,7 @@ var _default = new _vuex["default"].Store({
     },
     // 检验传过来的数据并进行更正修改数量
     modifyqty: function modifyqty(state, payload) {
+      console.log("前端传过来的校验", payload);
       state.cartlists.forEach(function (item) {
         if (item._id === payload.id) {
           item.qty = payload.qty;
@@ -71,9 +72,29 @@ var _default = new _vuex["default"].Store({
 
         localStorage.setItem("cartData", JSON.stringify(state.cartlists));
       });
+    },
+    // 处理当前要删除的商品
+    removeFromCart: function removeFromCart(state, payload) {
+      console.log("前面删除传过来的id值", payload);
+      state.cartlists = state.cartlists.filter(function (item) {
+        return item._id != payload;
+      });
+      localStorage.setItem("cartData", JSON.stringify(state.cartlists));
     }
   },
-  actions: {},
+  actions: {
+    addToCarts: function addToCarts() {
+      return regeneratorRuntime.async(function addToCarts$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    }
+  },
   modules: {}
 });
 

@@ -17,11 +17,6 @@
 export default {
     name:"MainConts",
      inject:['shortlists'],
-    data(){
-        return{
-            
-        }
-    },
     created(){
         console.log("当前数据",this.shortlists);
     },
@@ -35,9 +30,8 @@ export default {
                   clearInterval(timeId)
              }
           },10)
-          this.getData();
         }
-    }
+    },
 }
 </script>
 

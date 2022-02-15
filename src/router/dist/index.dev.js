@@ -11,42 +11,33 @@ var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 var _Home = _interopRequireDefault(require("../views/Home.vue"));
 
-var _Sorts = _interopRequireDefault(require("../views/Sorts.vue"));
-
-var _Carts = _interopRequireDefault(require("../views/Carts.vue"));
-
-var _Mines = _interopRequireDefault(require("../views/Mines.vue"));
-
-var _Details = _interopRequireDefault(require("../views/Details.vue"));
-
-var _NormalHots = _interopRequireDefault(require("../views/Sorts/NormalHots.vue"));
-
-var _Jackets = _interopRequireDefault(require("../views/Sorts/Jackets.vue"));
-
-var _Skirts = _interopRequireDefault(require("../views/Sorts/Skirts.vue"));
-
-var _Pants = _interopRequireDefault(require("../views/Sorts/Pants.vue"));
-
-var _Suits = _interopRequireDefault(require("../views/Sorts/Suits.vue"));
-
-var _WomanShoes = _interopRequireDefault(require("../views/Sorts/WomanShoes.vue"));
-
-var _Baggs = _interopRequireDefault(require("../views/Sorts/Baggs.vue"));
-
-var _ManSkirts = _interopRequireDefault(require("../views/Sorts/ManSkirts.vue"));
-
-var _ManShoes = _interopRequireDefault(require("../views/Sorts/ManShoes.vue"));
-
-var _MotherLadys = _interopRequireDefault(require("../views/Sorts/MotherLadys.vue"));
-
-var _UnderWears = _interopRequireDefault(require("../views/Sorts/UnderWears.vue"));
-
-var _HomeFunish = _interopRequireDefault(require("../views/Sorts/HomeFunish.vue"));
-
-var _RightCatch = _interopRequireDefault(require("../views/Sorts/RightCatch.vue"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// import Sorts from '../views/Sorts.vue'
+// import Carts from '../views/Carts.vue'
+// import Mines from '../views/Mines.vue'
+// import Details from '../views/Details.vue'
+// import Logins from '../views/Logins.vue'
+// import Regs from '../views/Regs.vue'
+// import NormalHots from '../views/Sorts/NormalHots.vue'
+// import Jackets from '../views/Sorts/Jackets.vue'
+// import Skirts from '../views/Sorts/Skirts.vue'
+// import Pants from '../views/Sorts/Pants.vue'
+// import Suits from '../views/Sorts/Suits.vue'
+// import WomanShoes from '../views/Sorts/WomanShoes.vue'
+// import Baggs from '../views/Sorts/Baggs.vue'
+// import ManSkirts from '../views/Sorts/ManSkirts.vue'
+// import ManShoes from '../views/Sorts/ManShoes.vue'
+// import MotherLadys from '../views/Sorts/MotherLadys.vue'
+// import UnderWears from '../views/Sorts/UnderWears.vue'
+// import HomeFunish from '../views/Sorts/HomeFunish.vue'
+// import RightCatch from '../views/Sorts/RightCatch.vue'
 _vue["default"].use(_vueRouter["default"]);
 
 var routes = [{
@@ -60,67 +51,158 @@ var routes = [{
 }, {
   path: '/sorts',
   name: 'Sorts',
-  component: _Sorts["default"],
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Sorts.vue'));
+    });
+  },
   redirect: {
     name: "NormalHots"
   },
   children: [{
     name: "NormalHots",
     path: "normalhots",
-    component: _NormalHots["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/NormalHots.vue'));
+      });
+    }
   }, {
     path: "jackets",
-    component: _Jackets["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/Jackets.vue'));
+      });
+    }
   }, {
     path: "skirts",
-    component: _Skirts["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/Skirts.vue'));
+      });
+    }
   }, {
     path: "pants",
-    component: _Pants["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/Pants.vue'));
+      });
+    }
   }, {
     path: "suits",
-    component: _Suits["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/Suits.vue'));
+      });
+    }
   }, {
     path: "womanshoes",
-    component: _WomanShoes["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/WomanShoes.vue'));
+      });
+    }
   }, {
     path: "baggs",
-    component: _Baggs["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/Baggs.vue'));
+      });
+    }
   }, {
     path: "manskirts",
-    component: _ManSkirts["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/ManSkirts.vue'));
+      });
+    }
   }, {
     path: "manshoes",
-    component: _ManShoes["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/ManShoes.vue'));
+      });
+    }
   }, {
     path: "motherladys",
-    component: _MotherLadys["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/MotherLadys.vue'));
+      });
+    }
   }, {
     path: "underwears",
-    component: _UnderWears["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/UnderWears.vue'));
+      });
+    }
   }, {
     path: "homefunnishing",
-    component: _HomeFunish["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/HomeFunish.vue'));
+      });
+    }
   }, {
     path: "rightcatch",
-    component: _RightCatch["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../views/Sorts/RightCatch.vue'));
+      });
+    }
   }]
 }, {
   path: '/mycart',
   name: 'Carts',
-  component: _Carts["default"]
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Carts.vue'));
+    });
+  },
+  meta: {
+    requireAuth: true
+  }
 }, {
   path: '/details',
   name: 'Details',
-  component: _Details["default"]
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Details.vue'));
+    });
+  }
 }, {
   path: '/details/:id',
   name: 'Details',
-  component: _Details["default"]
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Details.vue'));
+    });
+  }
+}, {
+  path: '/logins',
+  name: 'Logins',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Logins.vue'));
+    });
+  }
+}, {
+  path: '/regs',
+  name: 'Regs',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Regs.vue'));
+    });
+  }
 }, {
   path: '/mines',
   name: 'Mines',
-  component: _Mines["default"]
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Mines.vue'));
+    });
+  }
 }];
 var router = new _vueRouter["default"]({
   routes: routes

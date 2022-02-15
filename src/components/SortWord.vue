@@ -7,9 +7,11 @@
         </van-sidebar>
   </van-col>
   <van-col span="18">
-       <div class="rightlists" v-if="consLenths">
-           <router-view :changeDatalists="rightDataLists"></router-view>
-           <p></p>
+       <div class="rightlists" v-if="consLenths">      
+               <keep-alive>
+                   <router-view :changeDatalists="rightDataLists" :conts="conts"></router-view>
+               </keep-alive>
+                <p></p>
        </div>
         <div class="rightlists" v-else>
            <ul>
@@ -101,7 +103,8 @@ export default {
       ],
       rightDataLists:[],
       rightlisttops:[],
-      consLenths:false
+      consLenths:false,
+      conts:""
     };
   },
   provide(){
@@ -116,18 +119,26 @@ export default {
       formalConts(index){
           console.log("index",index);
       },
-      changeMenu(index){
+     changeMenu(index){
           this.activeKey = index;
          const currentcategorys = this.sortListsAll[this.activeKey].path
-         const conts = this.sortListsAll[this.activeKey].conts
-         console.log("当前点击的分类",currentcategorys);
+         this.conts = this.sortListsAll[this.activeKey].conts
+         console.log("当前点击的分类",currentcategorys,this.conts);
          this.$router.push("/sorts/"+currentcategorys)
-           this.getData(conts);
+        //  点击切换回到顶部
+        let top = document.documentElement.scrollTop;
+           let timeId = setInterval(()=>{
+              document.documentElement.scrollTop = top -= 50;  
+                  if(top<=0){
+                  clearInterval(timeId)
+             }
+          },30)
+           this.getData(this.conts);
       },
-      async getData(conts){
+       async getData(conts){
         //   const currentcategorys = this.sortListsAll[this.activeKey].conts
-         const {data} = await this.$request.post("/goods/search",{values:conts})
-         console.log("当前点击搜索到的data",conts,data.info);
+         const {data} =await this.$request.post("/goods/search",{values:conts})
+         console.log("当前点击搜索到的data",data.info);
          if(data.info.length>0){
               this.rightDataLists = data.info;
               this.consLenths = true;
@@ -140,7 +151,7 @@ export default {
         
         //  console.log("点击到的data",data.info);
       },
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>

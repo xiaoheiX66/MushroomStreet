@@ -27,13 +27,12 @@
   <div style="margin: 16px;">
     <van-button block type="info" native-type="submit" round>登录</van-button>
   </div>
-  <p @click="$router.push('/regs')" class="toRegs">没有账号？点击注册</p>
+  <p @click="toRegister" class="toRegs">没有账号？点击注册</p>
 </van-form>
     </div>
 </template>
 
 <script>
-import { Notify } from 'vant';
 export default {
     name:"LoginsWords",
     data() {
@@ -44,9 +43,15 @@ export default {
   },
   created(){
     console.log("this",this.$route);
-    const {username} = this.$route.query
-    if(username){
-      this.username = username
+    const {users} = this.$route.query
+    if(users){
+      this.username = users
+    }
+  },
+  mounted(){
+     const {users} = this.$route.query
+    if(users){
+      this.username = users
     }
   },
   methods: {
@@ -54,18 +59,22 @@ export default {
      console.log("values",values);
      const {data} = await this.$request.get("/user/login",{params:{username:this.username,password:this.password}})
      if(data.code===200){
-      Notify({type:'success',message:`欢迎回来${data.info.username}`});
-      localStorage.setItem("userinfo",JSON.stringify(data.info))
-      this.$router.push({name:"Mines",query:{user:this.username}});
-      this.username =""
+      // Notify({type:'success',message:`欢迎回来${data.info.username}`});
+      this.$Toast({type:'success',message:`欢迎回来${data.info.username}`});
+      this.$store.commit("isLogins",data.info)
+      this.$router.replace({name:"Mines",query:{user:values.username}});
+       this.username =""
       this.password =""
      }else{
-      Notify({type:'danger',message:'用户名或密码错误!!'});
-       this.username =""
+      this.$Toast({type:'danger',message:'用户名或密码错误!!', position: 'top'});
       this.password =""
      }
      console.log("登录data",data);
     },
+    toRegister(){
+      this.$router.push({name:"Regs"})
+      this.username = ""
+    }
   },
 }
 </script>
