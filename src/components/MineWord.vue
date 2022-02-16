@@ -10,6 +10,10 @@
     />
     <span v-if="isLogin"><a><i class="userss">{{userinfos.username}}</i>&nbsp;&nbsp;&nbsp;,<i @click="loginOut" class="loginouts">退出</i></a></span>
     <span v-else><a @click="$router.push('/logins')">立即登录</a></span>
+    <!-- 扩充内容 -->
+    <van-icon name="scan" style="position:fixed;right:9px;top:13.5%;background-color:white;z-index:12;font-size:20px" @click="rightPopsClick" >
+    <RightPops :shows="shows" class="smallpops" />
+    </van-icon>
       </section>
       <section>
           <van-row style="height:100%">
@@ -84,6 +88,7 @@
 </template>
 
 <script>
+import RightPops from "../views/MixComponents/RightPops.vue"
 export default {
     name:"MineWord",
     data(){
@@ -97,9 +102,13 @@ export default {
                 {id:5,icon:"shield-o",text:"下载购物APP"},
             ],
             show:false,
+            shows:false,
             fileList: ["https://i03piccdn.sogoucdn.com/bd8daea9f5f7d857"],
         }
     },
+    components:{
+        RightPops
+        },
     created(){
         // this.$store.commit('isLogins')
         this.getData();
@@ -162,7 +171,11 @@ export default {
      onOversize() {
         this.$Toast('文件大小不能超过 500kb');
     },
+    rightPopsClick(){
+        console.log("扩充部分被点击了",this.shows);
+        this.shows= !this.shows;
     }
+    },
 }
 </script>
 
