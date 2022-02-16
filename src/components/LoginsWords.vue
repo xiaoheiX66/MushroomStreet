@@ -24,7 +24,7 @@
     placeholder="密码"
     :rules="[{ required: true, message: '请填写密码' }]"
   />
-  <div style="margin: 16px;">
+  <div class="buttonsubs">
     <van-button block type="info" native-type="submit" round>登录</van-button>
   </div>
   <p @click="toRegister" class="toRegs">没有账号？点击注册</p>
@@ -78,3 +78,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.buttonsubs{
+  margin: 16px;
+}
+</style>

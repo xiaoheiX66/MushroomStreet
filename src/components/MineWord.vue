@@ -11,7 +11,7 @@
     <span v-if="isLogin"><a><i class="userss">{{userinfos.username}}</i>&nbsp;&nbsp;&nbsp;,<i @click="loginOut" class="loginouts">退出</i></a></span>
     <span v-else><a @click="$router.push('/logins')">立即登录</a></span>
     <!-- 扩充内容 -->
-    <van-icon name="scan" style="position:fixed;right:9px;top:13.5%;background-color:white;z-index:12;font-size:20px" @click="rightPopsClick" >
+    <van-icon name="scan" class="rightpopsss" @click="rightPopsClick" >
     <RightPops :shows="shows" class="smallpops" />
     </van-icon>
       </section>
@@ -20,11 +20,11 @@
         <van-col span="7" class="cotss">
             <span>0.0</span><span>我的余额</span>
         </van-col>
-        <van-col span="1" class="cotss" style="background:#eee;width:3px"></van-col>
+        <van-col span="1" class="cotss cottsbrother"></van-col>
         <van-col span="9" class="cotss">
             <span>0</span><span>我的优惠券</span>
         </van-col>
-        <van-col span="1" class="cotss" style="background:#eee;width:3px"></van-col>
+        <van-col span="1" class="cotss cottsbrother"></van-col>
         <van-col span="7" class="cotss">
             <span>0</span><span>我的积分</span>
         </van-col>
@@ -48,7 +48,7 @@
          </div>
       </section>
       <section>
-          <h3 style="font-family:'宋体',text-align:left">精选商铺</h3>
+          <h3 class="sureTitles">精选商铺</h3>
           <ul>
               <li v-for="item in bottomLists" :key="item._id" @click="goto(item._id)">
                   <van-card
@@ -60,16 +60,16 @@
                     origin-price="999"
                     >
                     <template #thumb>
-                        <img :src="item.img" alt="图片加载中.." style="height:100%">
+                        <img :src="item.img" alt="图片加载中.." height="100%" width="100%">
                     </template>
                     <template #price>
-                        <span style="color:red;font-size:15px;font-weight:bold">￥</span><span style="color:red;font-size:15px;font-weight:bold">{{item.price}}</span>
+                        <span class="prices">￥</span><span class="prices">{{item.price}}</span>
                     </template>
                   </van-card>
               </li>
           </ul>
       </section>
-      <section></section>
+      <section class="lastsections"></section>
       <van-popup
         v-model="show"
         closeable
@@ -214,6 +214,9 @@ export default {
        color: #ffffff;
      }
    }
+   .rightpopsss{
+       position:fixed;right:9px;top:13.5%;background-color:white;z-index:12;font-size:20px
+   }
  }
  section:nth-child(2){
    height: 80px;
@@ -299,8 +302,20 @@ export default {
         }
      }
  }
- }
- section:nth-last-child(1){
+ 
+ .lastsections{
     height: 50px;
+}
+.sureTitles{
+    font-family:'宋体';text-align:left;
+}
+.prices{
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+}
+.cottsbrother{
+    background:#eee;width:3px;
+}
 }
 </style>

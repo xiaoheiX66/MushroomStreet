@@ -11,7 +11,7 @@
                <keep-alive>
                    <router-view :changeDatalists="rightDataLists" :conts="conts"></router-view>
                </keep-alive>
-                <p></p>
+                <p class="tempss"></p>
        </div>
         <div class="rightlists" v-else>
            <ul>
@@ -19,8 +19,8 @@
                    <img :src="item.imgs" alt="">
                    <span>{{item.conts}}</span>
                </li>
-               <li style="height:50px"></li>
-               <li style="height:50px"></li>
+               <li class="tempsheight"></li>
+               <li class="tempsheight"></li>
            </ul>
        </div>
   </van-col>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import "../../public/scss/dist/TempsCss.css"
 export default {
     name:"SortWord",
     data() {
@@ -157,32 +158,8 @@ export default {
 <style lang="scss" scoped>
 .home{
     padding-top: 50px;
-    .rightlists{
-        width:100%;
-        height:700px;
-        ul{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            li{
-                width: 42%;
-                height: 136px;
-                display: flex;
-                flex-direction:column;
-                img{
-                    border-radius: 50%;
-                    height: 120px;
-                }
-                img:hover{
-                    opacity: 0.8;
-                }
-                span:nth-of-type(1){
-                    font-family: "宋体";
-                }
-            }
-        }
+    .tempss{
+        height: 50px;
     }
 }
 </style>

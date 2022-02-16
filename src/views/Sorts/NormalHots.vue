@@ -14,41 +14,13 @@
 </template>
 
 <script>
+import '../../../public/scss/dist/TempsCss.css'
 export default {
     name:"NormalHots",
     inject:['sortlistalls'],
     created(){
-        // console.log("sortlistall",this.sortlistalls);
+    
     }
 }
 </script>
 
-<style lang="scss" scoped>
-.rightlists{
-        width:100%;
-        height:700px;
-        ul{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            li{
-                width: 42%;
-                height: 136px;
-                display: flex;
-                flex-direction:column;
-                img{
-                    border-radius: 50%;
-                    height: 120px;
-                }
-                img:hover{
-                    opacity: 0.8;
-                }
-                span:nth-of-type(1){
-                    font-family: "宋体";
-                }
-            }
-        }
-    }
-</style>

@@ -4,10 +4,10 @@
         title="标题"
         >
         <template #title>
-            <span style="color:red;">商品</span>
-            <span style="margin-left:20px">参数</span>
-            <span style="margin-left:20px">评论</span>
-            <span style="margin-left:20px">推荐</span>
+            <span class="shopslot">商品</span>
+            <span class="agueslot">参数</span>
+            <span class="agueslot">评论</span>
+            <span class="agueslot">推荐</span>
         </template>
         </van-nav-bar>
         <ul>
@@ -21,7 +21,7 @@
                            <span>收藏：{{shoplists.cfav}}</span>
                            <span>72小时发货&nbsp;</span>
                        </p>
-                       <p style="font-size:15px">
+                       <p>
                            <span v-for="(item,index) in checklist" :key="index">
                               <van-checkbox v-model="item.checked" icon-size='13px'>{{item.text}}</van-checkbox>
                            </span>
@@ -35,13 +35,13 @@
                     <ul>
                  <li v-for="item in surelists" :key="item._id" @click="goto(item._id)">
                    <img :src="item.img" alt="">
-                   <div class="jieshaos" style="height:20%">
-                       <p style="font-size:14px;color:#aaaaaa;text-indent:0em">
+                   <div class="jieshaos">
+                       <p >
                            &nbsp;{{item.title}}
                        </p>
-                       <p style="padding:0px;text-indent:0em">
+                       <p>
                            <span>￥{{item.price}}</span>
-                           <span style="font-size:16px;color:#6b6b6b">{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
+                           <span>{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
                        </p>
                    </div>
                 </li>
@@ -179,6 +179,12 @@ export default {
 
 <style lang="scss" scoped>
 .homepage{
+    .shopslot{
+        color: red;
+    }
+    .agueslot{
+       margin-left:20px ;
+    }
     ul{
         width: 100%;
         li{
@@ -191,6 +197,7 @@ export default {
             }
             .jieshaos{
                 width: 100%;
+                height:20%;
                 p{
                     width: 100%;
                     padding: 5px 0px;
@@ -210,12 +217,16 @@ export default {
                     display: flex;
                     justify-content: space-around;
                     align-items: center;
+                    padding:0px;text-indent:0em;
                     span{
-                     color:#cbcbcb;font-size:10px   
+                     color:#cbcbcb;font-size:10px; 
                     }
                     span:nth-child(1){
                         color:#ff5777;font-weight:bold;
                         font-size: 17px;margin-right: 23px;
+                    }
+                    span:nth-child(2){
+                        font-size:10px;color:#bbb;
                     }
                 }
                 p:nth-child(3){
@@ -223,6 +234,7 @@ export default {
                     width: 100%;
                     justify-content: space-around;
                     align-items: center;
+                    font-size:12px;
                     span{
                         width: 25%;
                         display: flex;
@@ -241,7 +253,6 @@ export default {
     .bottomlists{
         width: 100%;
         padding-bottom: 50px;
-      
             ul{
             width: 100%;
             display: flex;
@@ -258,9 +269,7 @@ export default {
                     border-radius: 10px;
                 }
             }
-        }
-        
-        
+        }        
     }
     .bottomfixed{
         width: 100%;

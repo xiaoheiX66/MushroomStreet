@@ -16,7 +16,7 @@
                      width="5rem"
                      height="5rem"
                     />
-                    <span style="fot-size:14px;color:#666666">{{item.conts}}</span>
+                    <span class="contentsss">{{item.conts}}</span>
                 </li>
             </ul>
         </section>
@@ -32,7 +32,7 @@
                         height="5rem"
                         :src="item.imgs"
                         />
-                        <span style="font-size:14px;color:#666666">{{item.conts}}</span>
+                        <span class="contentsss">{{item.conts}}</span>
                     </li>
                 </ul>
             </div>
@@ -46,7 +46,7 @@
                  <li v-for="item in bottomLists" :key="item._id" @click="goto(item._id)">
                    <img :src="item.img" alt="">
                    <div class="jieshaos">
-                       <p style="font-size:14px;color:#aaaaaa">&nbsp;{{item.title}}</p>
+                       <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
                            <span>￥{{item.price}}</span>
                            <span>{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
@@ -60,7 +60,7 @@
                  <li v-for="item in newShopslist" :key="item._id" @click="goto(item._id)">
                    <img :src="item.img" alt="">
                    <div class="jieshaos">
-                       <p style="font-size:14px;color:#aaaaaa">&nbsp;{{item.title}}</p>
+                       <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
                            <span>￥{{item.price}}</span>
                            <span>{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
@@ -74,7 +74,7 @@
                  <li v-for="item in sureSelects" :key="item._id" @click="goto(item._id)">    
                    <img :src="item.img" alt="">
                    <div class="jieshaos">
-                       <p style="font-size:14px;color:#aaaaaa">&nbsp;{{item.title}}</p>
+                       <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
                            <span>￥{{item.price}}</span>
                            <span>{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
@@ -90,7 +90,7 @@
                       <a href="#" @click="goto(item._id)">
                    <img :src="item.img" alt=""></a>
                    <div class="jieshaos">
-                       <p style="font-size:14px;color:#aaaaaa">&nbsp;{{item.title}}</p>
+                       <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
                            <span>￥{{item.price}}</span>
                            <span>{{item.cfav}}&nbsp;<van-icon name="star-o" />&nbsp;</span>
@@ -353,6 +353,10 @@ export default {
     }
     section:nth-child(7){
         height: 60px;
+    }
+    .contentsss{
+        font-size:14px;
+        color:#666666;
     }
 }
 

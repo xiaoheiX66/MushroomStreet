@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.rightlists {
+  width: 100%;
+  height: 700px;
+}
+.rightlists ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.rightlists ul li {
+  width: 42%;
+  height: 136px;
+  display: flex;
+  flex-direction: column;
+}
+.rightlists ul li img {
+  border-radius: 50%;
+  height: 120px;
+}
+.rightlists ul li img:hover {
+  opacity: 0.8;
+}
+.rightlists ul li span:nth-of-type(1) {
+  font-family: "宋体";
+}

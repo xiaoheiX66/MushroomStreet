@@ -24,7 +24,7 @@
     placeholder="密码"
     :rules="[{ required: true, message: '请填写密码' }]"
   />
-  <div style="margin: 16px;">
+  <div class="registercss">
     <van-button round block type="info" native-type="submit">注册</van-button>
   </div>
   <p @click="$router.push('/logins')" class="toLogins">已有账号？点击登录</p>
@@ -70,5 +70,8 @@ export default {
 .toLogins{
   text-decoration: underline;
   font-size: 12px;
+}
+.registercss{
+  margin: 16px;
 }
 </style>

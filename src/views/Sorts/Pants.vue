@@ -11,7 +11,7 @@
                 v-for="item in changeDatalists" :key="item._id" @click="goto(item._id)"
                 >
                <template #price>
-               <p class="price" style="color:red;font-weight:bold;font-size:16px"><span>￥</span><span>{{item.price}}</span>  </p>  
+               <p class="price"><span>￥</span><span>{{item.price}}</span>  </p>  
                </template> 
             </van-card>
     </div>   

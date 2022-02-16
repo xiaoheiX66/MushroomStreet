@@ -11,40 +11,40 @@
         <section v-if="cartlists.length>0">
             <ul>
                 <li v-for="(item,index) in cartlists" :key="item._id">
-                    <van-swipe-cell style="width:375px">
+                    <van-swipe-cell class="vanswiperss">
                         
                      <van-card
                         num="2"
                         :price="59.00"
                         title="jdojsowdhd ifehfvuiafhuaeifhufjosdoskdskdpp"
                         thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
-                        style="flex:1"
+                        class="vanswiperss_card"
                         >
                         <template #price>
-                            <p style="width:128px;text-align:left">
-                                <span class="prices">￥</span><span class="prices">{{item.price}}</span>
+                            <p class="priceouts">
+                                <span>￥</span><span>{{item.price}}</span>
                             </p>
                         </template>
                         <template #title>
                             <p class="smalltitle">{{item.title}}</p>
                         </template>
                         <template #thumb>
-                            <img :src="item.img" alt="暂无" style="height:100%" />
+                            <img :src="item.img" alt="暂无" height="100%" width="80%" />
                         </template>
                         <template #num>
-                            <van-stepper v-model="item.qty" :name="item._id" theme="round" button-size="22" disable-input style="margin-top:10px"
+                            <van-stepper v-model="item.qty" :name="item._id" theme="round" button-size="22" disable-input class="qtysums"
                              @change="changeqty" @plus="addcss2(item._id,index)" @minus="reducss2(item._id,index)" @overlimit="overmits" />
                         </template> 
                      </van-card>
-                      <template #left style="display:flex">
-                         <van-checkbox @click="selectItem(item._id)" :value="selectIds.includes(item._id)" style="width:32px;justify-content:center;height:100%"></van-checkbox>
+                      <template #left class="leftcheckParent" style="display:flex">
+                         <van-checkbox @click="selectItem(item._id)" :value="selectIds.includes(item._id)" class="checkparent_child"></van-checkbox>
                     </template>
                      <template #right>
                         <van-button square text="删除" type="danger" class="delete-button"  @click="delShpos(item._id)" />
                      </template>
                        </van-swipe-cell>
                 </li>
-                <li style="height:50px"></li>
+                <li class="tempssli"></li>
             </ul>
         </section>
          <van-empty description="购物车里空空如也~~" v-else>
@@ -178,11 +178,34 @@ export default {
                 width: 100%;
                 height: 100%;
                 justify-content: space-between;
+                .vanswiperss{
+                    width:375px;
+                    .vanswiperss_card{
+                        flex: 1;
+                        .priceouts{
+                            width:128px;text-align:left;
+                            color: red;font-weight: bold;
+                            font-size: 16px;
+                        }
+                        img{
+                            height: 100%;
+                        }
+                        .qtysums{
+                            margin-top:10px;
+                        }
+                        .leftcheckParent{
+                            display: flex;
+                            .checkparent_child{
+                                width:32px;justify-content:center;height:100%;
+                            }
+                        }
+                    }
+                }
             }
+             .tempssli{
+                    height: 50px;
+                }
         }
-    }
-    .prices{
-        color:red;font-size:15px;font-weight:bold;
     }
     .smalltitle{
         width:215px;
