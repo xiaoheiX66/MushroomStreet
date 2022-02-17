@@ -46,6 +46,7 @@ export default {
       const {data} = await this.$request.post("/user/reg",values)
       console.log("注册结果",data);
       if(data.code===200){
+        console.log("values",values);
         this.$Toast.success("注册成功")
         this.$router.push({name:"Logins",query:{users:values.username}})
         values.password=""

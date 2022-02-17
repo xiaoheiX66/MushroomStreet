@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss">
 .price{
-  color:red;font-weight:bold;font-size:16px
+  color:red;font-weight:bold;font-size:16px;
 }
 </style>

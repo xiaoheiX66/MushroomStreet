@@ -191,9 +191,11 @@ export default {
             width: 100%;
             height: 504px;
             img{
-                width: 94%;
-                height: 82%;
+                width: 92%;
+                height: 86%;
                 border-radius: 10px;
+                border-left: 5px solid burlywood;
+                border-right: 5px solid burlywood;
             }
             .jieshaos{
                 width: 100%;
@@ -260,13 +262,14 @@ export default {
             flex-wrap: wrap;
             li{
                 width: 48.5%;
-                height: 270px;
+                height: 311px;
                 display: flex;
                 flex-direction: column;
                 img{
                     width: 100%;
-                    height: 80%;
+                    height: 258px;
                     border-radius: 10px;
+                    border: none;
                 }
             }
         }        

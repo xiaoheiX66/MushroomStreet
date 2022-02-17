@@ -1,5 +1,6 @@
 <template>
     <div class="homepage">
+        <div ref="container">
         <section>
             <van-steps :active="active">
             <van-step>买家下单</van-step>
@@ -50,10 +51,14 @@
          <van-empty description="购物车里空空如也~~" v-else>
             <van-button round type="danger" size="small" plain to="/sorts">去购买</van-button>
         </van-empty>
+        <!-- 批量删除 -->
+        <!-- <van-button v-if="selectIds.length>1" class="delMores" @click="delMores" icon="close" type="info">
+            <i class="delschild">批量删除</i>
+        </van-button> -->
         <section>
             <van-submit-bar :price="totalPrices" button-text="提交订单" @submit="onSubmit">
             <van-checkbox v-model="checkAll">全选</van-checkbox></van-submit-bar>
-        </section>
+        </section></div>
     </div>
 </template>
 
@@ -62,11 +67,12 @@ export default {
     name:"CartWord",
     data(){
         return{
-            active:1,
+            active:2,
             checked:true,
             qty:1, 
             selectIds:[],
-            qtys:1
+            qtys:1,
+            countMore:true,
         }
     },
     computed:{
@@ -156,10 +162,10 @@ export default {
       }
       console.log("selectids",this.selectIds);
     },
-    },
-    watch:{
-
+    delMores(){
+        this.$Toast.fail('开启中..')
     }
+    },
 }
 </script>
 
@@ -167,6 +173,26 @@ export default {
 .homepage{
     display: flex;
     flex-direction: column;
+     .checkparent_child{
+         width:32px;justify-content:center;height:100%;
+         align-items: center;
+        }
+        .delMores{
+            position: fixed;
+            border-radius: 10px;
+            top: 13.5%;
+            right: 33%;
+            color: rgb(221, 146, 146);
+            font-size: 20px;
+            z-index: 12;
+            background: white;
+            opacity: 0.7;
+            border: 1px solid #aaa;
+            .delschild{
+                font-size: 15px;
+                font-style: normal;
+            }
+        }
     section:nth-of-type(2){
         width: 100%;
         ul{
@@ -179,7 +205,7 @@ export default {
                 height: 100%;
                 justify-content: space-between;
                 .vanswiperss{
-                    width:375px;
+                    width:100%;
                     .vanswiperss_card{
                         flex: 1;
                         .priceouts{
@@ -192,12 +218,6 @@ export default {
                         }
                         .qtysums{
                             margin-top:10px;
-                        }
-                        .leftcheckParent{
-                            display: flex;
-                            .checkparent_child{
-                                width:32px;justify-content:center;height:100%;
-                            }
                         }
                     }
                 }

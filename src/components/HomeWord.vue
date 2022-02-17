@@ -15,12 +15,13 @@
                     :src="item.imgs"
                      width="5rem"
                      height="5rem"
+                     @click="popUps"
                     />
                     <span class="contentsss">{{item.conts}}</span>
                 </li>
             </ul>
         </section>
-        <section></section>
+        <section class="tempsHeight"></section>
         <section>
             <h3>本周流行</h3>
             <div>
@@ -31,20 +32,21 @@
                         width="5rem"
                         height="5rem"
                         :src="item.imgs"
+                        @click="popUps"
                         />
                         <span class="contentsss">{{item.conts}}</span>
                     </li>
                 </ul>
             </div>
         </section>
-        <section></section>
+        <section class="tempsHeight"></section>
         <section>
             <div class="bottomSorts">
                 <van-tabs v-model="active">
                 <van-tab title="流行">
                      <ul>
                  <li v-for="item in bottomLists" :key="item._id" @click="goto(item._id)">
-                   <img :src="item.img" alt="">
+                   <img :src="item.img" alt="" height="80%">
                    <div class="jieshaos">
                        <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
@@ -58,7 +60,7 @@
                 <van-tab title="新款">
                      <ul>
                  <li v-for="item in newShopslist" :key="item._id" @click="goto(item._id)">
-                   <img :src="item.img" alt="">
+                   <img :src="item.img" alt="" height="80%">
                    <div class="jieshaos">
                        <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
@@ -72,7 +74,7 @@
                 <van-tab title="精选">
                      <ul>
                  <li v-for="item in sureSelects" :key="item._id" @click="goto(item._id)">    
-                   <img :src="item.img" alt="">
+                   <img :src="item.img" alt="" height="80%">
                    <div class="jieshaos">
                        <p class="contentsss">&nbsp;{{item.title}}</p>
                        <p>
@@ -201,6 +203,9 @@ export default {
       },
       loadingData(){
           console.log("页面加载中...");
+      },
+      popUps(){
+          this.$Toast.fail('商品备货中...')
       }
   }
 }
@@ -252,7 +257,7 @@ export default {
             }
         }
     }
-    section:nth-child(3),section:nth-child(5){
+    .tempsHeight{
         width: 94%;
         height: 10px;
         background-color: #eeeeee;
@@ -311,12 +316,12 @@ export default {
             li{
                 width: 48%;
                 height: 300px;
-                margin-top: 15px;
+                margin-top: 7px;
                 display: flex;
                 flex-direction: column;
                 img{
                     width: 100%;
-                    height: 95%;
+                    height: 258px;
                     border-radius:10px ;
                 }
                 .jieshaos{
@@ -352,7 +357,8 @@ export default {
         }
     }
     section:nth-child(7){
-        height: 60px;
+        height: 10px;
+        margin-bottom: 60px;
     }
     .contentsss{
         font-size:14px;

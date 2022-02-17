@@ -1,0 +1,25 @@
+module.exports = {
+    css:{
+        loaderOptions:{
+            plugins:[
+                require("postcss-px-to-viewport")({
+                   unitToConvert:"px",
+                   viewportwidth:750,
+                   unitPrecision:3,
+                   propList:[
+                       "*"
+                   ],
+                   viewportUnit:"vw",
+                   fontViewportUnit:"vw",
+                   landscapeUnit:"vh",
+                   landscapeWidth:667,
+                   selectorBlackList:[],
+                   minPixelValue:1,
+                   mediaQuery:false,
+                   replace:true,
+                   exclude:/(\/|\\)(node_modules)(\/|\\)/,
+                })
+            ]
+        }
+    }
+   }

@@ -3,7 +3,7 @@
     <!-- 上方导航 -->
     <van-nav-bar
       v-if="ifShows"
-      :title="getValue"
+      title="MoGu-StrEet"
       :fixed="true"
       style="z-index: 5"
       left-arrow
@@ -22,7 +22,7 @@
       </template>
     </van-nav-bar>
     <!-- 上方主要内容 -->
-    <keep-alive :include="/Sorts|Carts|Logins/">
+    <keep-alive :include="/Home|Sorts|Logins|Regs/">
       <router-view class="bodys" v-if="flag"></router-view>
     </keep-alive>
     <!-- 下方导航，全局 -->

@@ -18,15 +18,15 @@
       <section>
           <van-row style="height:100%">
         <van-col span="7" class="cotss">
-            <span>0.0</span><span>我的余额</span>
+            <span>1000000</span><span>我的余额</span>
         </van-col>
         <van-col span="1" class="cotss cottsbrother"></van-col>
         <van-col span="9" class="cotss">
-            <span>0</span><span>我的优惠券</span>
+            <span>88888</span><span>我的优惠券</span>
         </van-col>
         <van-col span="1" class="cotss cottsbrother"></van-col>
         <van-col span="7" class="cotss">
-            <span>0</span><span>我的积分</span>
+            <span>1000MB</span><span>我的积分</span>
         </van-col>
         </van-row>
       </section>
@@ -307,7 +307,7 @@ export default {
     height: 50px;
 }
 .sureTitles{
-    font-family:'宋体';text-align:left;
+    font-family:'宋体';text-align:center;
 }
 .prices{
     font-size: 15px;
