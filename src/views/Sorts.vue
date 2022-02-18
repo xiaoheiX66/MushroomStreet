@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SortWord/>
+    <SortWord></SortWord>
   </div>
 </template>
 

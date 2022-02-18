@@ -1,22 +1,22 @@
 <template>
   <div class="home">
-    <CartWord/>
+    <CartWord />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CartWord from '@/components/CartWord.vue'
+import CartWord from "@/components/CartWord.vue";
 
 export default {
-  name: 'Carts',
+  name: "Carts",
   components: {
-    CartWord
-  }
-}
+    CartWord,
+  },
+};
 </script>
 <style lang="scss" scoped>
-.home{
+.home {
   padding-top: 47px;
 }
 </style>
